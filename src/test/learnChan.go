@@ -9,10 +9,11 @@ func main() {
 	ch:=make(chan int,0)
 	
 	go func(ch chan int){
-		for {
-			ch<-0
+		for i:=0;i<10;i++{
+			ch<-i
 			time.Sleep(1*time.Second)
 		}
+		close(ch) // close the channel
 	}(ch)
 	
 	for {
@@ -20,7 +21,9 @@ func main() {
 		if ok{
 			fmt.Println(val)
 		}else{
+			fmt.Println("channle is closed!")
 			break
 		}
 	}
+	fmt.Println("Program ready Exit!")
 }
