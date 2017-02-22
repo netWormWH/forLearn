@@ -2,6 +2,16 @@ package learTesting
 
 import "testing"
 
+
+func TestForTest(t *testing.T){
+	obj:=NewForTest()
+	obj.SetKey("A", 100)
+	obj.Remove("A")
+	if obj.Has("A") {
+		t.Fatal("Error")
+	}
+}
+
 func BenchmarkForTest(b *testing.B){
 	obj:=NewForTest()
 	
@@ -9,9 +19,9 @@ func BenchmarkForTest(b *testing.B){
 		for pb.Next() {
 			obj.SetKey("A", 100)
 			obj.Remove("A")
-			if obj.Has("A") {
-				b.Fatal("Error")
-			}
+			//if obj.Has("A") {
+			//	b.Fatal("Error")
+			//}
 		}
 	})
 }
